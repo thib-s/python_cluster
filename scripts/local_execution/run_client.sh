@@ -1,5 +1,6 @@
 cd nosave/env_parallel
 source bin/activate
-screen -dmS engine1 ipengine ~/.ipython/profile_default/security/ipcontroller-engine.json
-screen -dmS engine1 ipengine ~/.ipython/profile_default/security/ipcontroller-engine.json
-screen -dmS engine1 ipengine ~/.ipython/profile_default/security/ipcontroller-engine.json
+for i in `cat /proc/cpuinfo | awk '/^processor/{print $3}'`;
+do
+   screen -dmS engine1 ipengine ~/.ipython/profile_default/security/ipcontroller-engine.json
+done

@@ -1,5 +1,5 @@
 cd nosave/env_parallel
 source bin/activate
 
-pcontroller --ip="*" &
+ipcontroller --ip="*" &
 jupyter-notebook --no-browser
