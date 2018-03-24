@@ -47,7 +47,7 @@ To install you must:
     - jupyter notebook
     - all ipyparallel dependencies
     - some dependencies may have been forgotten, if so, let me know !
- 2. add an environnement variable CLUSTER\_ENV\_LOC leading to the root of your environnement
+ 2. add a file called .cluster\_env\_loc at the root of your home dir. It must contain the location of yor env dir. WARNING this has been done so because environment var don't work through ssh connection. This is very unsecure as the content of this file may lead to arbitrary code execution ! Any other solution is welcome !
  3. clone this git repo on the node
 
 note: these steps can be run in the shared directory or in you can repeat this operation on each node
