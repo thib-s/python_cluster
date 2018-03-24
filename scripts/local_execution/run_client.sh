@@ -1,4 +1,4 @@
-cd nosave/env_parallel
+cd $CLUSTER_ENV_LOC
 source bin/activate
 for i in `cat /proc/cpuinfo | awk '/^processor/{print $3}'`;
 do
