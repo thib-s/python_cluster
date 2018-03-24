@@ -47,9 +47,9 @@ start_jupyter() {
   remote_username="$1"
   master_hostname="$2"
   project_loc="$3"
-  echo "starting ipcontroller on $master_hostname ..."
+  echo "starting jupyter on $master_hostname ..."
 
-  shh $remote_username@$master_hostname $project_loc/scripts/local_execution/run_jupyter.sh
+  ssh $remote_username@$master_hostname $project_loc/scripts/local_execution/run_jupyter.sh
 }
 
 start_slaves() {
@@ -57,10 +57,10 @@ start_slaves() {
   project_loc="$2"
   slave_hostname_file="$3"
 
-  while read -r HOST;do
+  while read -r -u3 HOST;do
     echo "starting engines on $HOST ..."
-    ssh "$remote_username=@$HOST $project_loc/scripts/local_execution/run_client.sh"
-  done < $slave_hostname_file
+    bash -c "ssh $remote_username@$HOST $project_loc/scripts/local_execution/run_client.sh"
+  done 3< $slave_hostname_file
 
 }
 
@@ -104,8 +104,8 @@ main() {
   shift
   done
 
+  start_ipcontroller "$REMOTE_USERNAME" "$MASTER_HOSTNAME" "$PROJECT_LOC" 
   start_jupyter "$REMOTE_USERNAME" "$MASTER_HOSTNAME" "$PROJECT_LOC"
-  start_ipcontroller "$REMOTE_USERNAME" "$MASTER_HOSTNAME" "$PROJECT_LOC"
   start_slaves "$REMOTE_USERNAME" "$PROJECT_LOC" "$SLAVE_HOSTNAME_FILE"
 
 }
