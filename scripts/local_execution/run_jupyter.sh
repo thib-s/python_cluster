@@ -1,3 +1,3 @@
-source $CLUSTER_ENV_LOC/bin/activate
+source `cat ~/.cluster_env_loc`/bin/activate
 
 screen -dmS "jupyter_master" jupyter-notebook --no-browser

@@ -1,4 +1,3 @@
-cd $CLUSTER_ENV_LOC
-source bin/activate
+source `cat ~/.cluster_env_loc`/bin/activate
 
 screen -dmS "ipcontroller" ipcontroller --ip="*"
