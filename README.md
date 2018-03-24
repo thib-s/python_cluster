@@ -53,3 +53,10 @@ To install you must:
 note: these steps can be run in the shared directory or in you can repeat this operation on each node
 
 finally to start the cluster, you may run the start\_cluster.sh, for more info: start\_cluster.sh --help
+
+Then ssh with port forwarding to the master:
+ssh -L 8888:localhost:8888 $username@$master
+
+you can now open localhost:8888 in your browser.
+
+note: you'll need a toke to connect, to get it, ssh to the master and connect to the screen session associated to jupyter. screen -list | grep jupyter to find the session name. Then screen -r $session\_name to access the process, by looking at the log you must find the token url. finally CTRL+A+D to go back to the console.
